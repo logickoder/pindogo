@@ -25,7 +25,6 @@ export default function Icon(props: IconProps) {
 
 const styles = StyleSheet.create({
     icon: {
-        backgroundColor: '#000',
         width: 24,
         height: 24,
     },

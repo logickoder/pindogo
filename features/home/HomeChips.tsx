@@ -2,11 +2,7 @@ import { StyleProp, View, ViewStyle, StyleSheet } from "react-native";
 import Chip, { ChipState } from "../../components/Chip";
 import React from "react";
 
-interface HomeChipsProps {
-    style?: StyleProp<ViewStyle>;
-}
-
-export default class HomeChips extends React.Component<HomeChipsProps> {
+export default class HomeChips extends React.Component {
     state = {
         selected: "Groups",
     }
@@ -27,7 +23,7 @@ export default class HomeChips extends React.Component<HomeChipsProps> {
 
     render(): React.ReactNode {
         return (
-            <View style={[this.props.style, styles.container]}>
+            <View style={styles.container}>
                 {items.map((item) => (
                     <Chip
                         key={item}
@@ -47,6 +43,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        margin: 24,
     },
     item: {
         flex: 1,

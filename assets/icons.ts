@@ -5,8 +5,16 @@ const chat = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns=
 <path d="M16.1026 12C16.1026 12.5664 15.6434 13.0256 15.0769 13.0256C14.5105 13.0256 14.0513 12.5664 14.0513 12C14.0513 11.4336 14.5105 10.9744 15.0769 10.9744C15.6434 10.9744 16.1026 11.4336 16.1026 12Z" fill="#BBBBBB"/>
 </svg>`;
 
+const comment = `<svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.36682 7.8853C1.36682 4.08266 4.63821 1 8.67367 1H14.5192C18.5546 1 21.826 4.08266 21.826 7.8853C21.826 11.688 18.5546 14.7706 14.5192 14.7706H13.2791C13.1374 14.7706 13.0015 14.8236 12.9013 14.918L8.74848 18.8313C8.31693 19.238 7.59119 18.8507 7.73921 18.2928L8.54233 15.2657C8.60905 15.0142 8.4072 14.7706 8.13212 14.7706C4.39575 14.7706 1.36682 11.9164 1.36682 8.39561V7.8853Z" fill="#11141B" stroke="white"/>
+</svg>`;
+
 const create = `<svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M14.5 2.41663C7.83002 2.41663 2.41669 7.82996 2.41669 14.5C2.41669 21.17 7.83002 26.5833 14.5 26.5833C21.17 26.5833 26.5834 21.17 26.5834 14.5C26.5834 7.82996 21.17 2.41663 14.5 2.41663ZM18.7292 15.4062H15.4063V18.7291C15.4063 19.2245 14.9954 19.6354 14.5 19.6354C14.0046 19.6354 13.5938 19.2245 13.5938 18.7291V15.4062H10.2709C9.77544 15.4062 9.3646 14.9954 9.3646 14.5C9.3646 14.0045 9.77544 13.5937 10.2709 13.5937H13.5938V10.2708C13.5938 9.77538 14.0046 9.36454 14.5 9.36454C14.9954 9.36454 15.4063 9.77538 15.4063 10.2708V13.5937H18.7292C19.2246 13.5937 19.6354 14.0045 19.6354 14.5C19.6354 14.9954 19.2246 15.4062 18.7292 15.4062Z" fill="#BBBBBB"/>
+</svg>`;
+
+const heart = `<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.0297718 7.35224C0.467361 12.8095 6.06072 16.3998 9.32879 17.7549C9.73519 17.9234 10.1895 17.9324 10.6006 17.7758C14.0066 16.4789 19.4022 12.875 19.9217 7.35224C20.9149 0.0004673 12.1743 -2.1174 9.96084 2.30845C7.62412 -2.17492 -0.554409 0.0667644 0.0297718 7.35224Z" fill="#DC1500"/>
 </svg>`;
 
 const home = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +41,12 @@ const meet = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns=
 <rect x="4" y="20" width="16" height="1" rx="0.5" fill="#BBBBBB"/>
 </svg>`;
 
+const more = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
 const notification = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <circle cx="17.5" cy="3.5" r="3.5" fill="#DC1500"/>
@@ -42,6 +56,11 @@ const notification = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none
 const search = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M21 21L16.65 16.65" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+const share = `<svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.3008 15.7852L16.7125 0.680586C16.7415 0.612468 16.6697 0.544871 16.5974 0.572118L0.568053 6.61396C0.491459 6.64283 0.494677 6.74602 0.572937 6.7706L7.74415 9.0231L10.1346 15.7806C10.1606 15.8543 10.2701 15.8574 10.3008 15.7852Z" fill="#11141B"/>
+<path d="M7.74415 9.0231L10.1346 15.7806C10.1606 15.8543 10.2701 15.8574 10.3008 15.7852L16.7125 0.680586C16.7415 0.612468 16.6697 0.544871 16.5974 0.572118L0.568053 6.61396C0.491459 6.64283 0.494677 6.74602 0.572937 6.7706L7.74415 9.0231ZM7.74415 9.0231L16.3781 0.887228" stroke="white" stroke-linecap="round"/>
 </svg>`;
 
 const video = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,12 +76,16 @@ const video = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns
 
 const icons = {
     chat,
+    comment,
     create,
+    heart,
     home,
     logo,
     meet,
+    more,
     notification,
     search,
+    share,
     video,
 }
 

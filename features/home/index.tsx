@@ -1,15 +1,18 @@
-import { StyleSheet, View, Text, StatusBar } from "react-native";
+import { StyleSheet, View, Text, StatusBar, ScrollView } from "react-native";
 import HomeAppBar from "./HomeAppBar";
-import { ProfileAvatarProps } from "../../components/ProfileAvatar";
 import StoriesList from "./StoriesList";
 import HomeChips from "./HomeChips";
+import HomePosts from "./HomePosts";
 
 export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <HomeAppBar />
-            <StoriesList />
-            <HomeChips style={styles.chips} />
+            <ScrollView style={styles.scrollView}>
+                <StoriesList />
+                <HomeChips />
+                <HomePosts />
+            </ScrollView>
         </View>
     );
 }
@@ -21,7 +24,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         paddingTop: StatusBar.currentHeight || 0,
     },
-    chips: {
-        margin: 24,
-    }
+    scrollView: {
+        flex: 1,
+    },
 });
