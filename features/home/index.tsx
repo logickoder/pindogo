@@ -3,6 +3,7 @@ import HomeAppBar from "./HomeAppBar";
 import StoriesList from "./StoriesList";
 import HomeChips from "./HomeChips";
 import HomePosts from "./HomePosts";
+import HomeBottomBar from "./HomeBottomBar";
 
 export default function HomeScreen() {
     return (
@@ -13,6 +14,7 @@ export default function HomeScreen() {
                 <HomeChips />
                 <HomePosts />
             </ScrollView>
+            <HomeBottomBar />
         </View>
     );
 }
