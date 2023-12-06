@@ -1,5 +1,7 @@
-import { View, Text, StyleSheet, Image, StyleProp, ViewStyle, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, Image, StyleProp, ViewStyle, ImageBackground, TouchableHighlight } from "react-native";
 import Icon from "./Icon";
+import { AntDesign } from '@expo/vector-icons';
+import React from "react";
 
 export enum PostType {
     text,
@@ -15,6 +17,8 @@ export interface PostHeaderProps {
 export interface PostFooterProps {
     likes: number;
     comments: number;
+    isLiked: boolean;
+    onLike?: () => void;
     style?: StyleProp<ViewStyle>;
 }
 
@@ -44,11 +48,17 @@ export function PostHeader(props: PostHeaderProps) {
 }
 
 export function PostFooter(props: PostFooterProps) {
-    let { likes, comments, style } = props;
+    let { likes, comments, isLiked, onLike, style } = props;
 
     return (
         <View style={[style, styles.postFooterContainer]}>
-            <Icon name="heart" />
+            <TouchableHighlight onPress={onLike}>
+                <AntDesign
+                    name={isLiked ? "heart" : "hearto"}
+                    size={24}
+                    color={isLiked ? "#F21C44" : "white"}
+                />
+            </TouchableHighlight>
             <Text style={styles.postFooterText}>{likes}</Text>
             <Icon name="comment" />
             <Text style={styles.postFooterText}>{comments}</Text>
@@ -57,36 +67,57 @@ export function PostFooter(props: PostFooterProps) {
     );
 }
 
-export default function Post(props: PostProps) {
-    let { header, footer, style, type, content } = props;
-    let { username, avatar, timestamp } = header;
-    let { likes, comments } = footer;
+export default class Post extends React.Component<PostProps> {
+    state = {
+        isLiked: false,
+    }
 
-    switch (type) {
-        case PostType.text:
-            return (
-                <View style={[style, styles.postTextContainer]}>
-                    <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
-                    <Text style={styles.postText}>{content}</Text>
-                    <PostFooter likes={likes} comments={comments} />
-                </View>
-            );
+    toggleLike = () => {
+        this.setState({ isLiked: !this.state.isLiked });
+    }
 
-        case PostType.image:
-            return (
-                <View style={style}>
-                    <ImageBackground
-                        source={{ uri: content }}
-                        style={styles.postImageContainer}
-                        imageStyle={styles.postImage}
-                    >
-                        <View style={styles.postImageInnerContainer}>
-                            <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
-                            <PostFooter style={styles.postImageFooterContainer} likes={likes} comments={comments} />
-                        </View>
-                    </ImageBackground >
-                </View>
-            );
+    render(): React.ReactNode {
+        let { header, footer, style, type, content } = this.props;
+        let { username, avatar, timestamp } = header;
+        let { likes, comments } = footer;
+
+        switch (type) {
+            case PostType.text:
+                return (
+                    <View style={[style, styles.postTextContainer]}>
+                        <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
+                        <Text style={styles.postText}>{content}</Text>
+                        <PostFooter
+                            likes={likes}
+                            comments={comments}
+                            isLiked={this.state.isLiked}
+                            onLike={this.toggleLike}
+                        />
+                    </View>
+                );
+
+            case PostType.image:
+                return (
+                    <View style={style}>
+                        <ImageBackground
+                            source={{ uri: content }}
+                            style={styles.postImageContainer}
+                            imageStyle={styles.postImage}
+                        >
+                            <View style={styles.postImageInnerContainer}>
+                                <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
+                                <PostFooter
+                                    style={styles.postImageFooterContainer}
+                                    likes={likes}
+                                    comments={comments}
+                                    isLiked={this.state.isLiked}
+                                    onLike={this.toggleLike}
+                                />
+                            </View>
+                        </ImageBackground >
+                    </View>
+                );
+        }
     }
 }
 
