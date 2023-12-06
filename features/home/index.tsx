@@ -4,15 +4,30 @@ import StoriesList from "./StoriesList";
 import HomeChips from "./HomeChips";
 import HomePosts from "./HomePosts";
 import HomeBottomBar from "./HomeBottomBar";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RouteList } from "../../App";
+import { PostProps } from "../../components/Post";
 
-export default function HomeScreen() {
+type Props = NativeStackScreenProps<RouteList, 'home'>;
+
+export default function HomeScreen({ route, navigation }: Props) {
+
+    const goToCommentScreen = (post: PostProps) => {
+        navigation.navigate({
+            name: 'comment',
+            params: {
+                post: post
+            }
+        });
+    };
+
     return (
         <View style={styles.container}>
             <HomeAppBar />
             <ScrollView style={styles.scrollView}>
                 <StoriesList />
                 <HomeChips />
-                <HomePosts />
+                <HomePosts onPostClick={goToCommentScreen} />
             </ScrollView>
             <HomeBottomBar />
         </View>

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, StyleProp, ViewStyle, ImageBackground, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, Image, StyleProp, ViewStyle, ImageBackground, TouchableHighlight, TouchableOpacity } from "react-native";
 import Icon from "./Icon";
 import { AntDesign } from '@expo/vector-icons';
 import React from "react";
@@ -28,10 +28,11 @@ export interface PostProps {
     style?: StyleProp<ViewStyle>;
     type: PostType;
     content: string;
+    media?: string;
+    onClick?: () => void;
 }
 
-export function PostHeader(props: PostHeaderProps) {
-    let { username, avatar, timestamp } = props;
+export function PostHeader({ username, avatar, timestamp }: PostHeaderProps) {
     return (
         <View style={styles.postHeaderContainer}>
             <Image
@@ -47,18 +48,22 @@ export function PostHeader(props: PostHeaderProps) {
     );
 }
 
-export function PostFooter(props: PostFooterProps) {
-    let { likes, comments, isLiked, onLike, style } = props;
-
+export function PostFooter({
+    likes,
+    comments,
+    isLiked,
+    onLike,
+    style
+}: PostFooterProps) {
     return (
         <View style={[style, styles.postFooterContainer]}>
-            <TouchableHighlight onPress={onLike}>
+            <TouchableOpacity onPress={onLike}>
                 <AntDesign
                     name={isLiked ? "heart" : "hearto"}
                     size={24}
                     color={isLiked ? "#F21C44" : "white"}
                 />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.postFooterText}>{likes}</Text>
             <Icon name="comment" />
             <Text style={styles.postFooterText}>{comments}</Text>
@@ -77,7 +82,7 @@ export default class Post extends React.Component<PostProps> {
     }
 
     render(): React.ReactNode {
-        let { header, footer, style, type, content } = this.props;
+        let { header, footer, style, type, media, content, onClick } = this.props;
         let { username, avatar, timestamp } = header;
         let { likes, comments } = footer;
 
@@ -85,8 +90,16 @@ export default class Post extends React.Component<PostProps> {
             case PostType.text:
                 return (
                     <View style={[style, styles.postTextContainer]}>
-                        <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
-                        <Text style={styles.postText}>{content}</Text>
+                        <PostHeader
+                            username={username}
+                            avatar={avatar}
+                            timestamp={timestamp}
+                        />
+                        <TouchableOpacity onPress={onClick} activeOpacity={0} >
+                            <Text style={styles.postText}>
+                                {content}
+                            </Text>
+                        </TouchableOpacity>
                         <PostFooter
                             likes={likes}
                             comments={comments}
@@ -100,12 +113,19 @@ export default class Post extends React.Component<PostProps> {
                 return (
                     <View style={style}>
                         <ImageBackground
-                            source={{ uri: content }}
+                            source={{ uri: media }}
                             style={styles.postImageContainer}
                             imageStyle={styles.postImage}
                         >
                             <View style={styles.postImageInnerContainer}>
                                 <PostHeader username={username} avatar={avatar} timestamp={timestamp} />
+                                <TouchableOpacity
+                                    onPress={onClick}
+                                    activeOpacity={0}
+                                    style={styles.postImageInnerContainerClick}
+                                >
+                                    <View />
+                                </TouchableOpacity>
                                 <PostFooter
                                     style={styles.postImageFooterContainer}
                                     likes={likes}
@@ -182,9 +202,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         paddingVertical: 16,
     },
+    postImageInnerContainerClick: {
+        flex: 1,
+    },
     postImageFooterContainer: {
         padding: 18,
         backgroundColor: '#11141B',
         borderRadius: 15,
-    }
+    },
 });

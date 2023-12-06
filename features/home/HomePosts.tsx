@@ -1,7 +1,11 @@
 import { StyleSheet } from "react-native";
 import Post, { PostProps, PostType } from "../../components/Post";
 
-export default function HomePosts() {
+interface HomePostsProps {
+    onPostClick: (post: PostProps) => void;
+}
+
+export default function HomePosts({ onPostClick }: HomePostsProps) {
     return (
         posts.map((post, index) => {
             return (
@@ -12,6 +16,8 @@ export default function HomePosts() {
                     style={styles.item}
                     type={post.type}
                     content={post.content}
+                    media={post.media}
+                    onClick={() => onPostClick(post)}
                 />
             );
         })
@@ -35,9 +41,11 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 325,
             comments: 98,
+            isLiked: false,
         },
         type: PostType.text,
         content: 'What do you Think About The News?',
+
     },
     {
         header: {
@@ -48,9 +56,11 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 50,
             comments: 3000,
+            isLiked: true,
         },
         type: PostType.image,
-        content: 'https://picsum.photos/300/400',
+        media: 'https://picsum.photos/300/400',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
     },
     {
         header: {
@@ -61,6 +71,7 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 500,
             comments: 50,
+            isLiked: false,
         },
         type: PostType.text,
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
@@ -74,9 +85,11 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 200,
             comments: 0,
+            isLiked: true,
         },
         type: PostType.image,
-        content: 'https://picsum.photos/250/300',
+        media: 'https://picsum.photos/250/300',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
     },
     {
         header: {
@@ -87,6 +100,7 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 60,
             comments: 2,
+            isLiked: false,
         },
         type: PostType.text,
         content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
@@ -100,8 +114,10 @@ const posts: Array<PostProps> = [
         footer: {
             likes: 9999,
             comments: 2000,
+            isLiked: true,
         },
         type: PostType.image,
-        content: 'https://picsum.photos/400/300',
+        media: 'https://picsum.photos/400/300',
+        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
     },
 ];
